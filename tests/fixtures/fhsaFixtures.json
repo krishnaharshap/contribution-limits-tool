@@ -1,0 +1,11 @@
+[
+  {
+    "userAge": 30,
+    "previousContributions": [
+      { "year": 2023, "amount": 8000 },
+      { "year": 2024, "amount": 3000 }
+    ],
+    "annualLimit": 8000,
+    "expectedRemaining":  5000
+  }
+]
