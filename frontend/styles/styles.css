@@ -1,40 +1,54 @@
-/* Base styles */
+/* Base Styles */
 body {
   margin: 0;
-  font‑family: Arial, sans‑serif;
+  font-family: Arial, sans-serif;
   background: #f9f9f9;
   color: #333;
 }
 
+/* Chrome-like theme container */
+.chrome-theme {
+  background-color: #f2f2f2; /* Light grey like Chrome new tab */
+}
+
+/* Header */
 .app-header {
   display: flex;
-  align‑items: center;
-  justify‑content: space‑between;
+  align-items: center;
+  justify-content: space-between;
   padding: 16px 24px;
-  background‑color: #ffffff;
-  box‑shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: relative;
 }
 
 .app-header h1 {
   margin: 0;
-  font‑size: 1.75rem;
+  font-size: 1.75rem;
 }
 
-.flag‑container {
-  /* ensure the flag is at top‑right */
+/* Chrome Accent Override on Header */
+.chrome-theme .app-header {
+  background-color: #4285f4; /* Google/Chrome blue */
+  color: #ffffff;
+}
+
+/* Canada Flag */
+.flag-container {
   display: flex;
-  align‑items: center;
-  justify‑content: center;
+  align-items: center;
+  justify-content: center;
 }
 
-.flag‑icon {
-  width: 32px;   /* or adjust size as desired */
-  height: auto;
+.flag-icon {
+  width: 32px;      /* fixed small width */
+  height: auto;     /* keep aspect ratio */
+  display: block;   /* ensures correct layout */
+  max-width: 100%;  /* never exceed container */
 }
 
-/* Tabs navigation */
-.account‑tabs {
+/* Tabs Navigation */
+.account-tabs {
   margin: 16px 24px;
 }
 
@@ -45,15 +59,21 @@ body {
   background-color: #e0e0e0;
   cursor: pointer;
   font-size: 1rem;
-  color: #000;            /* Ensure inactive tabs are black text */
+  color: #000;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.tab:hover {
+  background-color: #d5d5d5;
 }
 
 .tab.active {
-  background-color: #007bff;
-  color: #fff;            /* Active tab text white */
+  background-color: #1a73e8; /* Chrome blue */
+  color: #ffffff;
 }
 
-/* Content sections */
+/* Content Sections */
 .content {
   display: none;
   margin: 0 24px 24px;
