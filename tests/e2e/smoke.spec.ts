@@ -15,7 +15,33 @@ test("first-time visitor is redirected to the welcome screen", async ({ page }) 
   expect(consoleErrors).toEqual([]);
 });
 
-test("nav links move between screens", async ({ page }) => {
+test("nav links move between screens once a profile exists", async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      "contribution-limits-tool:state",
+      JSON.stringify({
+        schemaVersion: 1,
+        profile: {
+          birthYear: 1990,
+          residencyStartYear: null,
+          province: null,
+          hasEmployerPension: false,
+        },
+        accounts: {
+          tfsa: { contributions: [], withdrawals: [] },
+          fhsa: { accountOpenedYear: null, firstQualifyingWithdrawalYear: null, contributions: [] },
+          rrsp: {
+            contributions: [],
+            earnedIncomeCentsByYear: {},
+            pensionAdjustmentCentsByYear: {},
+            priorUnusedRoomOverrideCents: null,
+          },
+        },
+        ui: { disclaimerAcceptedAt: new Date().toISOString(), theme: "system" },
+      }),
+    );
+  });
+
   await page.goto("/#/about");
   await expect(page.getByTestId("about-screen")).toBeVisible();
 
