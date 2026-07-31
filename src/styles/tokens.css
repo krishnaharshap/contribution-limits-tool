@@ -1,0 +1,123 @@
+:root {
+  color-scheme: light dark;
+
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f1f3f5;
+  --color-border: #e2e5e9;
+  --color-text: #1a1d23;
+  --color-text-secondary: #5b6270;
+  --color-primary: #0f3d5c;
+  --color-primary-hover: #0c3049;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #3ba7e0;
+  --color-success: #1e8e5a;
+  --color-success-bg: #e6f4ec;
+  --color-warning: #9a6b00;
+  --color-warning-bg: #fdf3dc;
+  --color-danger: #c62839;
+  --color-danger-bg: #fdecee;
+  --color-focus-ring: #3ba7e0;
+
+  --shadow-color: 220 15% 25%;
+  --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.08);
+  --shadow-md: 0 4px 12px hsl(var(--shadow-color) / 0.1);
+  --shadow-lg: 0 12px 32px hsl(var(--shadow-color) / 0.14);
+
+  --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-full: 999px;
+
+  --transition-fast: 120ms ease;
+  --transition-base: 200ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #10151c;
+    --color-surface: #171d26;
+    --color-surface-hover: #1f2733;
+    --color-border: #2a323e;
+    --color-text: #eef1f5;
+    --color-text-secondary: #a3acba;
+    --color-primary: #4db3ea;
+    --color-primary-hover: #6ec2ee;
+    --color-primary-contrast: #08131c;
+    --color-accent: #4db3ea;
+    --color-success: #3ecf8e;
+    --color-success-bg: #12301f;
+    --color-warning: #e0a83b;
+    --color-warning-bg: #33270c;
+    --color-danger: #ef5468;
+    --color-danger-bg: #3a1620;
+    --color-focus-ring: #4db3ea;
+
+    --shadow-color: 220 40% 2%;
+    --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.4);
+    --shadow-md: 0 4px 12px hsl(var(--shadow-color) / 0.45);
+    --shadow-lg: 0 12px 32px hsl(var(--shadow-color) / 0.5);
+  }
+}
+
+/* Manual theme toggle overrides - takes precedence over the OS setting
+   in either direction once the user picks a theme explicitly. */
+:root[data-theme="dark"] {
+  --color-bg: #10151c;
+  --color-surface: #171d26;
+  --color-surface-hover: #1f2733;
+  --color-border: #2a323e;
+  --color-text: #eef1f5;
+  --color-text-secondary: #a3acba;
+  --color-primary: #4db3ea;
+  --color-primary-hover: #6ec2ee;
+  --color-primary-contrast: #08131c;
+  --color-accent: #4db3ea;
+  --color-success: #3ecf8e;
+  --color-success-bg: #12301f;
+  --color-warning: #e0a83b;
+  --color-warning-bg: #33270c;
+  --color-danger: #ef5468;
+  --color-danger-bg: #3a1620;
+  --color-focus-ring: #4db3ea;
+  --shadow-color: 220 40% 2%;
+}
+
+:root[data-theme="light"] {
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f1f3f5;
+  --color-border: #e2e5e9;
+  --color-text: #1a1d23;
+  --color-text-secondary: #5b6270;
+  --color-primary: #0f3d5c;
+  --color-primary-hover: #0c3049;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #3ba7e0;
+  --color-success: #1e8e5a;
+  --color-success-bg: #e6f4ec;
+  --color-warning: #9a6b00;
+  --color-warning-bg: #fdf3dc;
+  --color-danger: #c62839;
+  --color-danger-bg: #fdecee;
+  --color-focus-ring: #3ba7e0;
+  --shadow-color: 220 15% 25%;
+}
