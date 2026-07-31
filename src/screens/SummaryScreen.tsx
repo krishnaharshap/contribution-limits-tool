@@ -34,10 +34,14 @@ export function SummaryScreen() {
   const [importError, setImportError] = useState<string | null>(null);
   const [importMessage, setImportMessage] = useState<string | null>(null);
   const [confirmingReset, setConfirmingReset] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
 
   const asOfYear = getCurrentYear();
 
-  if (state.profile.birthYear === null) {
+  // Resetting clears birthYear, which would normally trip this guard.
+  // isResetting suppresses it for the one render where that's still
+  // true but this screen hasn't finished navigating to /welcome yet.
+  if (state.profile.birthYear === null && !isResetting) {
     return <Navigate to="/profile" replace />;
   }
 
@@ -90,6 +94,12 @@ export function SummaryScreen() {
   }
 
   function handleResetConfirmed() {
+    // The route change to /welcome and this screen's unmount don't
+    // happen in the same commit as the reset dispatch, so this screen
+    // can still re-render (with the just-cleared state) before it's
+    // gone - isResetting stops its own guard from redirecting to
+    // /profile during that window instead of /welcome.
+    setIsResetting(true);
     dispatch(actions.stateReset());
     navigate("/welcome");
   }
@@ -160,7 +170,11 @@ export function SummaryScreen() {
         <div className="card">
           <h2>Import data</h2>
           <p>Replace everything in this browser with a previously exported JSON file.</p>
+          <label htmlFor="import-file-input" className="visually-hidden">
+            Choose a Contribution Limits Tool export file (JSON) to import
+          </label>
           <input
+            id="import-file-input"
             ref={fileInputRef}
             type="file"
             accept="application/json"
