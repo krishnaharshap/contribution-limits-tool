@@ -1,37 +1,48 @@
-const tabContent = document.getElementById("tab-content");
-const ageInput = document.getElementById("age");
-const ageSubmit = document.getElementById("age-submit");
-const ageError = document.getElementById("age-error");
+const tabButtons = document.querySelectorAll(".tab");
+const contentSections = document.querySelectorAll(".content");
 
-ageSubmit.addEventListener("click", () => {
-  const age = Number(ageInput.value);
-  if (age < 18) {
-    ageError.textContent = "You must be 18 or older to use this tool.";
-    localStorage.removeItem("userAge");
-    return;
-  }
-  ageError.textContent = "";
-  localStorage.setItem("userAge", age);
-});
+function activateTab(button) {
+  const accountType = button.id.replace("tab-", "");
+  const targetSection = document.getElementById(`content-${accountType}`);
 
-document.querySelectorAll(".tab-btn").forEach(btn => {
-  btn.addEventListener("click", () => loadTab(btn.dataset.tab));
-});
+  tabButtons.forEach((btn) => btn.classList.remove("active"));
+  contentSections.forEach((section) => section.classList.remove("active"));
 
-function loadTab(tabName) {
-  tabContent.innerHTML = `
-    <h2>${tabName.toUpperCase()} Contribution Tracking</h2>
-    <label>Contribution This Year:</label>
-    <input type="number" id="contrib-input" />
+  button.classList.add("active");
+  targetSection.classList.add("active");
+
+  renderContributionForm(targetSection, accountType);
+}
+
+function renderContributionForm(section, accountType) {
+  const storageKey = `contribution-${accountType}`;
+  const savedAmount = Number(localStorage.getItem(storageKey) || 0);
+
+  section.innerHTML = `
+    <h2>${accountType.toUpperCase()} Contribution Tracking</h2>
+    <label for="contrib-input">Contribution this year</label>
+    <input type="number" id="contrib-input" min="0" value="${savedAmount}" />
     <button id="save-btn">Save</button>
     <p id="result"></p>
   `;
 
-  document.getElementById("save-btn").addEventListener("click", () => {
-    const value = Number(document.getElementById("contrib-input").value);
-    const data = JSON.parse(localStorage.getItem("contribData") || "{}");
-    data[tabName] = value;
-    localStorage.setItem("contribData", JSON.stringify(data));
-    document.getElementById("result").textContent = `Saved: ${value}`;
+  section.querySelector("#save-btn").addEventListener("click", () => {
+    const input = section.querySelector("#contrib-input");
+    const result = section.querySelector("#result");
+    const value = Number(input.value);
+
+    if (Number.isNaN(value) || value < 0) {
+      result.textContent = "Enter a valid, non-negative amount.";
+      return;
+    }
+
+    localStorage.setItem(storageKey, value);
+    result.textContent = `Saved: ${value}`;
   });
 }
+
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => activateTab(button));
+});
+
+renderContributionForm(document.getElementById("content-tfsa"), "tfsa");
