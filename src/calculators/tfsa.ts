@@ -8,11 +8,9 @@ import { getTfsaEligibility } from "./shared/eligibility";
 import { ERROR_CODES, ValidationError, type Warning } from "./shared/errors";
 import { addCents } from "./shared/money";
 import { assertNoDuplicateYears, validateAmountCents, validateYear } from "./shared/validation";
+import type { ContributionEntry } from "./shared/types";
 
-export interface ContributionEntry {
-  year: number;
-  amountCents: number;
-}
+export type { ContributionEntry };
 
 export interface TfsaYearBreakdown {
   year: number;
