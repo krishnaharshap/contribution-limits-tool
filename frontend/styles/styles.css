@@ -27,27 +27,19 @@ body {
   font-size: 1.75rem;
 }
 
-/* Chrome Accent Override on Header */
-.chrome-theme .app-header {
-  background-color: #4285f4; /* Google/Chrome blue */
-  color: #ffffff;
-}
-
-/* Canada Flag */
 .flag-container {
+  /* ensure the flag is at top-right */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .flag-icon {
-  width: 32px;      /* fixed small width */
-  height: auto;     /* keep aspect ratio */
-  display: block;   /* ensures correct layout */
-  max-width: 100%;  /* never exceed container */
+  width: 32px;   /* or adjust size as desired */
+  height: auto;
 }
 
-/* Tabs Navigation */
+/* Tabs navigation */
 .account-tabs {
   margin: 16px 24px;
 }
