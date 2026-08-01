@@ -137,10 +137,10 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.vite
 
-# Miscellaneous
-instructions.md
-tests-structure.md
-create-scaffold.ps1
-create-tests-scaffold.ps1
-create-tests-scaffold-ts.ps1
+# Playwright
+/playwright-report/
+/test-results/
+/blob-report/
+/playwright/.cache/
