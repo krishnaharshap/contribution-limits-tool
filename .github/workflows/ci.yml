@@ -14,7 +14,7 @@ jobs:
     name: Lint & typecheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
@@ -28,7 +28,7 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
@@ -51,7 +51,7 @@ jobs:
       # for speed, since playwright.config.ts reads this same variable.
       PLAYWRIGHT_FULL_MATRIX: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') && '1' || '0' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
