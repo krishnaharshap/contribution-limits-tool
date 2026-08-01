@@ -1,5 +1,4 @@
 import { buildState, expect, test } from "../fixtures/test-fixtures";
-import { STORAGE_KEY } from "../../../src/store/persistence";
 
 test("the deployed site loads with no console errors", async ({ page }) => {
   const consoleErrors: string[] = [];
@@ -28,24 +27,15 @@ test("all three dashboard cards render for a returning visitor", async ({ page, 
 });
 
 test("a contribution can be added and persists across reload", async ({ page }) => {
-  // Seeds with a one-time localStorage write instead of the seedState
-  // fixture's addInitScript, which re-runs on every navigation and
-  // would wipe out the contribution this test adds before its reload.
-  await page.goto("./");
-  await page.evaluate(
-    ([key, serialized]) => window.localStorage.setItem(key, serialized),
-    [STORAGE_KEY, JSON.stringify(buildState((state) => (state.profile.birthYear = 1980)))] as [
-      string,
-      string,
-    ],
-  );
+  // Builds state through the real UI instead of the seedState fixture -
+  // its addInitScript reruns on every navigation, which would wipe out
+  // the contribution this test adds through the form before its reload
+  // gets a chance to check persistence.
+  await page.goto("./#/profile");
+  await page.getByTestId("profile-birth-year-input").fill("1980");
+  await page.getByTestId("profile-continue-button").click();
 
-  // The evaluate call above only touches localStorage - the app already
-  // mounted with the old (empty) state during the goto above and won't
-  // re-read storage on a same-document hash change, so force a real
-  // reload before navigating to the account screen.
   await page.goto("./#/account/tfsa");
-  await page.reload();
   await page.getByTestId("tfsa-contribution-year-input").fill("2024");
   await page.getByTestId("tfsa-contribution-amount-input").fill("1000");
   await page.getByTestId("tfsa-contribution-submit-button").click();
