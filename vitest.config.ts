@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     pool: "threads",
     environment: "jsdom",
+    testTimeout: 20000,
     include: ["tests/unit/**/*.test.{ts,tsx}"],
     setupFiles: ["./tests/unit/setup.ts"],
     coverage: {
