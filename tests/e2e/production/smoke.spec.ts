@@ -9,7 +9,7 @@ test("the deployed site loads with no console errors", async ({ page }) => {
   });
   page.on("pageerror", (error) => consoleErrors.push(error.message));
 
-  await page.goto("/");
+  await page.goto("./");
 
   await expect(page).toHaveTitle("Contribution Limits Tool");
   await expect(page.getByTestId("welcome-screen")).toBeVisible();
@@ -19,17 +19,23 @@ test("the deployed site loads with no console errors", async ({ page }) => {
 test("all three dashboard cards render for a returning visitor", async ({ page, seedState }) => {
   await seedState(buildState((state) => (state.profile.birthYear = 1980)));
 
-  await page.goto("/#/dashboard");
+  await page.goto("./#/dashboard");
 
   await expect(page.getByTestId("room-card-tfsa")).toBeVisible();
   await expect(page.getByTestId("room-card-fhsa")).toBeVisible();
   await expect(page.getByTestId("room-card-rrsp")).toBeVisible();
 });
 
-test("a contribution can be added and persists across reload", async ({ page, seedState }) => {
-  await seedState(buildState((state) => (state.profile.birthYear = 1980)));
+test("a contribution can be added and persists across reload", async ({ page }) => {
+  // Builds state through the real UI instead of the seedState fixture -
+  // its addInitScript reruns on every navigation, which would wipe out
+  // the contribution this test adds through the form before its reload
+  // gets a chance to check persistence.
+  await page.goto("./#/profile");
+  await page.getByTestId("profile-birth-year-input").fill("1980");
+  await page.getByTestId("profile-continue-button").click();
 
-  await page.goto("/#/account/tfsa");
+  await page.goto("./#/account/tfsa");
   await page.getByTestId("tfsa-contribution-year-input").fill("2024");
   await page.getByTestId("tfsa-contribution-amount-input").fill("1000");
   await page.getByTestId("tfsa-contribution-submit-button").click();
