@@ -228,7 +228,7 @@ export function RrspPanel() {
         />
       </div>
 
-      <div className="grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
+      <div className="grid">
         <div className="card">
           <YearValueForm
             heading="Earned income by year"
@@ -288,42 +288,49 @@ export function RrspPanel() {
       {result.yearlyBreakdown.length > 0 && (
         <div className="card" style={{ marginTop: "var(--space-5)" }}>
           <h2>Year-by-year breakdown</h2>
-          <table className="data-table" data-testid="rrsp-breakdown-table">
-            <thead>
-              <tr>
-                <th scope="col">Year</th>
-                <th scope="col">Based on income year</th>
-                <th scope="col" className="numeric">
-                  New room
-                </th>
-                <th scope="col" className="numeric">
-                  Pension adjustment
-                </th>
-                <th scope="col" className="numeric">
-                  Room available
-                </th>
-                <th scope="col" className="numeric">
-                  Contributed
-                </th>
-                <th scope="col" className="numeric">
-                  Remaining
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {result.yearlyBreakdown.map((row) => (
-                <tr key={row.year}>
-                  <td>{row.year}</td>
-                  <td>{row.earnedIncomeYear}</td>
-                  <td className="numeric">{formatCad(row.newRoomCents)}</td>
-                  <td className="numeric">{formatCad(row.pensionAdjustmentCents)}</td>
-                  <td className="numeric">{formatCad(row.roomAvailableCents)}</td>
-                  <td className="numeric">{formatCad(row.contributedCents)}</td>
-                  <td className="numeric">{formatCad(row.cumulativeRoomRemainingCents)}</td>
+          <div
+            className="table-scroll"
+            role="region"
+            aria-label="RRSP year-by-year breakdown"
+            tabIndex={0}
+          >
+            <table className="data-table" data-testid="rrsp-breakdown-table">
+              <thead>
+                <tr>
+                  <th scope="col">Year</th>
+                  <th scope="col">Based on income year</th>
+                  <th scope="col" className="numeric">
+                    New room
+                  </th>
+                  <th scope="col" className="numeric">
+                    Pension adjustment
+                  </th>
+                  <th scope="col" className="numeric">
+                    Room available
+                  </th>
+                  <th scope="col" className="numeric">
+                    Contributed
+                  </th>
+                  <th scope="col" className="numeric">
+                    Remaining
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {result.yearlyBreakdown.map((row) => (
+                  <tr key={row.year}>
+                    <td>{row.year}</td>
+                    <td>{row.earnedIncomeYear}</td>
+                    <td className="numeric">{formatCad(row.newRoomCents)}</td>
+                    <td className="numeric">{formatCad(row.pensionAdjustmentCents)}</td>
+                    <td className="numeric">{formatCad(row.roomAvailableCents)}</td>
+                    <td className="numeric">{formatCad(row.contributedCents)}</td>
+                    <td className="numeric">{formatCad(row.cumulativeRoomRemainingCents)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </>

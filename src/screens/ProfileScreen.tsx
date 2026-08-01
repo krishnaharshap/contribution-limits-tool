@@ -108,7 +108,7 @@ export function ProfileScreen() {
         stays on this device.
       </p>
 
-      <div className="grid" style={{ gridTemplateColumns: "1.2fr 1fr", alignItems: "start" }}>
+      <div className="grid grid--profile" style={{ alignItems: "start" }}>
         <form className="card" onSubmit={handleSubmit} noValidate>
           <div className="field">
             <label htmlFor="birth-year">Birth year</label>
