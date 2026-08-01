@@ -176,40 +176,47 @@ export function FhsaPanel() {
 
           <div className="card" style={{ marginTop: "var(--space-5)" }}>
             <h2>Year-by-year breakdown</h2>
-            <table className="data-table" data-testid="fhsa-breakdown-table">
-              <thead>
-                <tr>
-                  <th scope="col">Year</th>
-                  <th scope="col" className="numeric">
-                    Annual increment
-                  </th>
-                  <th scope="col" className="numeric">
-                    Carryforward
-                  </th>
-                  <th scope="col" className="numeric">
-                    Room available
-                  </th>
-                  <th scope="col" className="numeric">
-                    Contributed
-                  </th>
-                  <th scope="col" className="numeric">
-                    Unused
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {result.yearlyBreakdown.map((row) => (
-                  <tr key={row.year}>
-                    <td>{row.year}</td>
-                    <td className="numeric">{formatCad(row.annualIncrementCents)}</td>
-                    <td className="numeric">{formatCad(row.carryforwardCents)}</td>
-                    <td className="numeric">{formatCad(row.roomAvailableCents)}</td>
-                    <td className="numeric">{formatCad(row.contributedCents)}</td>
-                    <td className="numeric">{formatCad(row.unusedThisYearCents)}</td>
+            <div
+              className="table-scroll"
+              role="region"
+              aria-label="FHSA year-by-year breakdown"
+              tabIndex={0}
+            >
+              <table className="data-table" data-testid="fhsa-breakdown-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col" className="numeric">
+                      Annual increment
+                    </th>
+                    <th scope="col" className="numeric">
+                      Carryforward
+                    </th>
+                    <th scope="col" className="numeric">
+                      Room available
+                    </th>
+                    <th scope="col" className="numeric">
+                      Contributed
+                    </th>
+                    <th scope="col" className="numeric">
+                      Unused
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {result.yearlyBreakdown.map((row) => (
+                    <tr key={row.year}>
+                      <td>{row.year}</td>
+                      <td className="numeric">{formatCad(row.annualIncrementCents)}</td>
+                      <td className="numeric">{formatCad(row.carryforwardCents)}</td>
+                      <td className="numeric">{formatCad(row.roomAvailableCents)}</td>
+                      <td className="numeric">{formatCad(row.contributedCents)}</td>
+                      <td className="numeric">{formatCad(row.unusedThisYearCents)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </>
       )}

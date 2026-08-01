@@ -66,7 +66,7 @@ export function TfsaPanel() {
         )}
       </div>
 
-      <div className="grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
+      <div className="grid">
         <div className="card">
           <h2>Contributions</h2>
           <ContributionForm
@@ -112,40 +112,47 @@ export function TfsaPanel() {
 
       <div className="card" style={{ marginTop: "var(--space-5)" }}>
         <h2>Year-by-year breakdown</h2>
-        <table className="data-table" data-testid="tfsa-breakdown-table">
-          <thead>
-            <tr>
-              <th scope="col">Year</th>
-              <th scope="col" className="numeric">
-                Limit
-              </th>
-              <th scope="col" className="numeric">
-                Withdrawals added back
-              </th>
-              <th scope="col" className="numeric">
-                Room available
-              </th>
-              <th scope="col" className="numeric">
-                Contributed
-              </th>
-              <th scope="col" className="numeric">
-                Remaining
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {result.yearlyBreakdown.map((row) => (
-              <tr key={row.year}>
-                <td>{row.year}</td>
-                <td className="numeric">{formatCad(row.annualLimitCents)}</td>
-                <td className="numeric">{formatCad(row.withdrawalsAddedBackCents)}</td>
-                <td className="numeric">{formatCad(row.roomAvailableCents)}</td>
-                <td className="numeric">{formatCad(row.contributedCents)}</td>
-                <td className="numeric">{formatCad(row.cumulativeRoomRemainingCents)}</td>
+        <div
+          className="table-scroll"
+          role="region"
+          aria-label="TFSA year-by-year breakdown"
+          tabIndex={0}
+        >
+          <table className="data-table" data-testid="tfsa-breakdown-table">
+            <thead>
+              <tr>
+                <th scope="col">Year</th>
+                <th scope="col" className="numeric">
+                  Limit
+                </th>
+                <th scope="col" className="numeric">
+                  Withdrawals added back
+                </th>
+                <th scope="col" className="numeric">
+                  Room available
+                </th>
+                <th scope="col" className="numeric">
+                  Contributed
+                </th>
+                <th scope="col" className="numeric">
+                  Remaining
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {result.yearlyBreakdown.map((row) => (
+                <tr key={row.year}>
+                  <td>{row.year}</td>
+                  <td className="numeric">{formatCad(row.annualLimitCents)}</td>
+                  <td className="numeric">{formatCad(row.withdrawalsAddedBackCents)}</td>
+                  <td className="numeric">{formatCad(row.roomAvailableCents)}</td>
+                  <td className="numeric">{formatCad(row.contributedCents)}</td>
+                  <td className="numeric">{formatCad(row.cumulativeRoomRemainingCents)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

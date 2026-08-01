@@ -113,37 +113,39 @@ export function SummaryScreen() {
       <ScreenHeading>Summary</ScreenHeading>
 
       <div className="card" style={{ marginBottom: "var(--space-5)" }}>
-        <table className="data-table" data-testid="summary-table">
-          <thead>
-            <tr>
-              <th scope="col">Account</th>
-              <th scope="col" className="numeric">
-                Remaining room
-              </th>
-              <th scope="col" className="numeric">
-                Contributed
-              </th>
-              <th scope="col" />
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={row.label}>
-                <td>{row.label}</td>
-                <td className="numeric">
-                  {row.result ? formatCad(row.result.remainingRoomCents) : "-"}
-                </td>
-                <td className="numeric">{formatCad(getTotalContributedCents(row.result))}</td>
-                <td>
-                  <a href={`#${row.href}`}>View details</a>
-                </td>
+        <div className="table-scroll" role="region" aria-label="Account summary" tabIndex={0}>
+          <table className="data-table" data-testid="summary-table">
+            <thead>
+              <tr>
+                <th scope="col">Account</th>
+                <th scope="col" className="numeric">
+                  Remaining room
+                </th>
+                <th scope="col" className="numeric">
+                  Contributed
+                </th>
+                <th scope="col" />
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr key={row.label}>
+                  <td>{row.label}</td>
+                  <td className="numeric">
+                    {row.result ? formatCad(row.result.remainingRoomCents) : "-"}
+                  </td>
+                  <td className="numeric">{formatCad(getTotalContributedCents(row.result))}</td>
+                  <td>
+                    <a href={`#${row.href}`}>View details</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div className="grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
+      <div className="grid">
         <div className="card">
           <h2>Export your data</h2>
           <p>Since nothing is stored anywhere but this browser, exporting is also your backup.</p>
