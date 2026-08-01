@@ -1,0 +1,22 @@
+{
+  "name": "contribution-limits-tool-tests",
+  "version": "0.1.0",
+  "description": "UI automation tests for Contribution Limits Tool using Playwright + Jest (JavaScript)",
+  "scripts": {
+    "test": "jest",
+    "test:headed": "jest --runInBand --verbose",
+    "test:chrome": "jest --runInBand --verbose --browser=chromium"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "jest-playwright-preset": "^9.0.0",
+    "playwright": "^1.40.0"
+  },
+  "jest": {
+    "preset": "jest-playwright-preset",
+    "testMatch": [
+      "**/e2e/**/*.spec.js"
+    ],
+    "testTimeout": 30000
+  }
+}

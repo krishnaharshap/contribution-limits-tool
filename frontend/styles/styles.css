@@ -1,4 +1,4 @@
-/* Base styles */
+/* Base Styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -6,6 +6,12 @@ body {
   color: #333;
 }
 
+/* Chrome-like theme container */
+.chrome-theme {
+  background-color: #f2f2f2; /* Light grey like Chrome new tab */
+}
+
+/* Header */
 .app-header {
   display: flex;
   align-items: center;
@@ -45,15 +51,21 @@ body {
   background-color: #e0e0e0;
   cursor: pointer;
   font-size: 1rem;
-  color: #000;            /* Ensure inactive tabs are black text */
+  color: #000;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.tab:hover {
+  background-color: #d5d5d5;
 }
 
 .tab.active {
-  background-color: #007bff;
-  color: #fff;            /* Active tab text white */
+  background-color: #1a73e8; /* Chrome blue */
+  color: #ffffff;
 }
 
-/* Content sections */
+/* Content Sections */
 .content {
   display: none;
   margin: 0 24px 24px;
