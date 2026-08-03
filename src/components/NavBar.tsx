@@ -1,10 +1,10 @@
 import { NavLink } from "react-router";
 
 const NAV_ITEMS = [
+  { to: "/about", label: "About" },
+  { to: "/profile", label: "Profile" },
   { to: "/dashboard", label: "Dashboard" },
   { to: "/summary", label: "Summary" },
-  { to: "/profile", label: "Profile" },
-  { to: "/about", label: "About" },
 ];
 
 export function NavBar() {
